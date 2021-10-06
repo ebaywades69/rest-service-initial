@@ -13,25 +13,26 @@ import com.example.restservice.GreetingController;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class RestServiceApplicationTests {
-	
-	@LocalServerPort
-	private int port;
-	
-	@Autowired
-	private TestRestTemplate restTemplate;
 
-	@Autowired
-	private GreetingController controller;
-	
-	@Test
-	public void contextLoads() throws Exception {
-		assertThat(controller).isNotNull();
-	}
-	
-	@Test
-	public void greetingShouldReturnDefaultMessage() throws Exception {
-		assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/greeting",
-				String.class)).contains("Hello, World");
-	}
+  @LocalServerPort
+  private int port;
+
+  @Autowired
+  private TestRestTemplate restTemplate;
+
+  @Autowired
+  private GreetingController controller;
+
+  @Test
+  public void contextLoads() throws Exception {
+    assertThat(controller).isNotNull();
+  }
+
+  @Test
+  public void greetingShouldReturnDefaultMessage() throws Exception {
+    assertThat(
+        this.restTemplate.getForObject("http://localhost:" + port + "/greeting", String.class))
+            .contains("Hello, World");
+  }
 
 }
