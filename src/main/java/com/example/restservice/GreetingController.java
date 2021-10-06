@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.vo.Greeting;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @RestController
 public class GreetingController {
 
@@ -16,6 +18,9 @@ public class GreetingController {
 
   @GetMapping("/greeting")
   public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
+
+    log.info("Log4J2 Test Hello:{}", name);
+
     return new Greeting(counter.incrementAndGet(), String.format(template, name));
   }
 }
